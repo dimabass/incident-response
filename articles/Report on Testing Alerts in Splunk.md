@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "Report on Testing Alerts in Splunk"
+title: Report on Testing Alerts in Splunk
+permalink: /articles/report-on-testing-alerts/
 ---
-
 
 # Report on Testing Alerts in Splunk
 

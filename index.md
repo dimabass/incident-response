@@ -9,3 +9,4 @@ title: Articles
     <li><a href="{{ article.url }}">{{ article.title }}</a></li>
   {% endfor %}
 </ul>
+
