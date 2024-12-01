@@ -1,6 +1,3 @@
-theme: minima
-title: Incident Response Blog
-description: A collection of articles on incident response and digital forensics.
 collections:
   articles:
     output: true
