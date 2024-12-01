@@ -1,3 +1,7 @@
+---
+layout: default
+title: Incident Response Basics
+---
 **TASK**
 Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:
     
