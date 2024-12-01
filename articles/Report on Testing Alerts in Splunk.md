@@ -1,7 +1,16 @@
 ---
 layout: default
-title: Incident Response Basics
+title: Report on Testing Alerts in Splunk
+description: A comprehensive guide on Splunk alert testing.
+date: 2024-12-01
+tags: [Splunk, SOC, Incident Response]
 ---
+
+# Report on Testing Alerts in Splunk
+
+This article covers the process of creating and testing alerts in Splunk...
+
+
 **TASK**
 Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:
     
