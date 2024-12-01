@@ -1,10 +1,8 @@
 ---
 layout: default
 title: Report on Testing Alerts in Splunk
-description: A comprehensive guide on Splunk alert testing.
-date: 2024-12-01
-tags: [Splunk, SOC, Incident Response]
 ---
+
 
 # Report on Testing Alerts in Splunk
 
