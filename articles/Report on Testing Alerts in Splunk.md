@@ -1,13 +1,3 @@
----
-layout: default
-title: Report on Testing Alerts in Splunk
-permalink: /articles/report-on-testing-alerts-in-splunk/
----
-# Report on Testing Alerts in Splunk
-
-This article covers the process of creating and testing alerts in Splunk...
-
-
 **TASK**
 Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:
     

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Articles
+page-title: Articles
 ---
 
 <h1>Articles</h1>
