@@ -1,10 +1,9 @@
 ---
 layout: default
-title: "Main title"
+title: "Main Title"
 ---
 # Articles
 
 {% for article in site.articles %}
 - [{{ article.title }}]({{ article.url }})
 {% endfor %}
-
