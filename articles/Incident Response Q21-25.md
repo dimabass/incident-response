@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Incident Response Q21-25.md"
+title: "Incident Response Q21-25"
 date: 2024-12-07
 ---
  
