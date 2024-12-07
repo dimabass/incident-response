@@ -1,3 +1,9 @@
+---
+layout: post
+title: "Report on Testing Alerts in Splunk"
+date: 2024-12-07
+---
+ 
 **TASK**
 Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:
     
