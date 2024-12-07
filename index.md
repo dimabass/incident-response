@@ -1,12 +1,10 @@
 ---
 layout: default
-page-title: Articles
+title: "Main title"
 ---
+# Articles
 
-<h1>Articles</h1>
-<ul>
-  {% for article in site.articles %}
-    <li><a href="{{ article.url }}">{{ article.title }}</a></li>
-  {% endfor %}
-</ul>
+{% for article in site.articles %}
+- [{{ article.title }}]({{ article.url }})
+{% endfor %}
 
