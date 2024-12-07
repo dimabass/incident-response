@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Report on Testing Alerts in Splunk
-permalink: /articles/report-on-testing-alerts/
+permalink: /articles/report-on-testing-alerts-in-splunk/
 ---
-
 # Report on Testing Alerts in Splunk
 
 This article covers the process of creating and testing alerts in Splunk...
