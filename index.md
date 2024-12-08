@@ -1,8 +1,11 @@
 ---
 layout: default
-title: "Main Title"
+title: "Главная страница"
 ---
-# Articles
+
+# Добро пожаловать
+
+Список статей:
 
 {% for article in site.articles %}
 - [{{ article.title }}]({{ article.url }})
