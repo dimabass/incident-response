@@ -3,6 +3,8 @@ layout: default
 title: "Report on Testing Alerts in Splunk"
 date: 2024-12-07
 ---
+
+# Report on Testing Alerts in Splunk
  
 **TASK**
 Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:
