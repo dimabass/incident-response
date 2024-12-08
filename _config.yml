@@ -2,3 +2,5 @@ collections:
   articles:
     output: true
     permalink: /articles/:title/
+    sort_by: date
+    sort_order: descending
