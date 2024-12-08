@@ -1,10 +1,12 @@
 ---
 layout: default
-title: "Все статьи"
+title: "All Articles"
 permalink: /articles/
 ---
 
-# Все статьи
+# Articles
+
+Here are all the articles:
 
 {% for article in site.articles %}
 - [{{ article.title }}]({{ article.url }}) — {{ article.date }}
