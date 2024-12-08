@@ -3,9 +3,7 @@ layout: default
 title: "Incident Response Q21-25"
 date: 2024-12-07
 ---
-
 # Incident Response Q21-25
-
  
  Q -21 The suspicious employee tried to infiltrate the data by sending it as an email attachment. What is the name of the suspicious attachment?
  **Answer: Pictures.7z**
