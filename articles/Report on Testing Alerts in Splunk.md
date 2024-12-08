@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Report on Testing Alerts in Splunk"
 date: 2024-12-07
 ---
