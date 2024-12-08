@@ -1,7 +1,3 @@
----
-layout: default
-title: About
----
 
 # Incident Response Blog
 
