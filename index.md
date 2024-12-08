@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "Главная страница"
+title: "Home"
 ---
 
-# Добро пожаловать
+# Welcome to the Site
 
-Список статей:
+Here are all the articles:
 
 {% for article in site.articles %}
-- [{{ article.title }}]({{ article.url }})
+- [{{ article.title }}]({{ article.url }}) ({{ article.date }})
 {% endfor %}
