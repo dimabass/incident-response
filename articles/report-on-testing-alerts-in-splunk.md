@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Report on Testing Alerts in Splunk"
+title: "report-on-testing-alerts-in-splunk"
 date: 2024-12-07
 ---
 # Report on Testing Alerts in Splunk
