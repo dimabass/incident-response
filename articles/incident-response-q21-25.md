@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Incident Response Q21-25"
+title: "incident-response-q21-25"
 date: 2024-12-07
 ---
 # Incident Response Q21-25
