@@ -1,7 +1,29 @@
-<!-- Это изображение, которое будет увеличиваться по клику -->
-<a href="resources/your_image.png" target="_blank">
-  <img src="resources/your_image.png" alt="Description of image" style="width: 100%; max-width: 500px;">
-</a>
+<style>
+  /* Устанавливаем стиль для изображений */
+  .zoomable {
+    transition: transform 0.3s ease;  /* Плавный эффект увеличения */
+    cursor: pointer;  /* Курсор меняется на указатель */
+  }
+
+  /* Стиль увеличения изображения при наведении */
+  .zoomable:hover {
+    transform: scale(1.5);  /* Увеличение на 50% */
+  }
+</style>
+
+<script>
+  // Инициализация увеличения изображений по клику
+  document.querySelectorAll('img').forEach(function(image) {
+    image.classList.add('zoomable');  // Добавляем класс zoomable ко всем изображениям
+
+    image.addEventListener('click', function() {
+      // Открытие изображения в новой вкладке по клику
+      const imageUrl = image.src;
+      const imageWindow = window.open();
+      imageWindow.document.write(`<img src="${imageUrl}" style="width: 100%; height: auto;"/>`);
+    });
+  });
+</script>
 
 **TASK**
 Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:
