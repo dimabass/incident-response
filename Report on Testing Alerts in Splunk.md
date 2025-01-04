@@ -48,8 +48,7 @@ source="WinEventLog:*" index="windows_logs" EventCode=4720
 
 - Creating an alert is simple—just save the query as an alert. 
      ![](resources/93fa320f853f8212e909fbef74e987df.png)
-  <img src="resources/93fa320f853f8212e909fbef74e987df.png" alt="Alert creation example" class="zoomable">
-        
+         
     - Set the trigger: **Trigger alert when number of results is greater than 0**.
     
 - Configure actions (e.g., sending notifications to Slack, etc.).
