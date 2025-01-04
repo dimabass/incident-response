@@ -1,3 +1,8 @@
+# My Article
+
+This is an article with some images that can be zoomed in on hover or clicked to view in full size.
+
+<!-- Добавляем стили CSS -->
 <style>
   /* Устанавливаем стиль для изображений */
   .zoomable {
@@ -11,6 +16,7 @@
   }
 </style>
 
+<!-- Добавляем JavaScript для клика по изображениям -->
 <script>
   // Инициализация увеличения изображений по клику
   document.querySelectorAll('img').forEach(function(image) {
@@ -24,6 +30,10 @@
     });
   });
 </script>
+
+<!-- Добавляем изображение -->
+![Image Description](resources/your_image.png)
+
 
 **TASK**
 Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:
