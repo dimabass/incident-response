@@ -1,3 +1,8 @@
+<!-- Это изображение, которое будет увеличиваться по клику -->
+<a href="resources/your_image.png" target="_blank">
+  <img src="resources/your_image.png" alt="Description of image" style="width: 100%; max-width: 500px;">
+</a>
+
 **TASK**
 Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:
     
