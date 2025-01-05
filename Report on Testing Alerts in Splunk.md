@@ -28,9 +28,7 @@
 #### **Creating and Testing Alerts**
 
 ---
-<div class="screenshot-container">
 ![](resources/175ce630f6ceac02f42f1edbec13f99d.png)
-</div>
 
 ![](resources/e61b8bc669860ca7608fcb6bec87c671.png)
 <div class="page-break"></div>
