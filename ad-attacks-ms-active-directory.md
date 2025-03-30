@@ -6,9 +6,6 @@ description: In-depth walkthrough of AD attack techniques such as DCSync, DCShad
 tags: [active-directory, blue-team, detection, kerberos, attack]
 ---
 
-> After a recent interview where I was challenged with analyzing a real-world AD attack, I dove deeper into advanced techniques and created this write-up. Full article reposted below for educational purposes.
----
-
 Attacks on Microsoft Active Directory have been a recurrent topic of reports on Black Hat and Defcon during the last four years. Speakers tell about new vectors, share their inventions, and give recommendations on detection and avoidance of these vectors. I believe that the IT department is capable of creating a secure infrastructure, which can be monitored by the security department. High-quality monitoring, in its turn, requires good tools. That's like a military base: you have erected guard towers around the perimeter but still keep watch over the area.  
   
 
