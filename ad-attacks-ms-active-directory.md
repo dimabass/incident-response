@@ -4,6 +4,7 @@ title: Advanced Attacks on Microsoft Active Directory – Detection & Mitigation
 ---
 
 > After a recent interview where I was challenged with analyzing a real-world AD attack, I dove deeper into advanced techniques and created this write-up. Full article reposted below for educational purposes.
+---
 
 Attacks on Microsoft Active Directory have been a recurrent topic of reports on Black Hat and Defcon during the last four years. Speakers tell about new vectors, share their inventions, and give recommendations on detection and avoidance of these vectors. I believe that the IT department is capable of creating a secure infrastructure, which can be monitored by the security department. High-quality monitoring, in its turn, requires good tools. That's like a military base: you have erected guard towers around the perimeter but still keep watch over the area.  
   
@@ -49,9 +50,7 @@ Now we are going to review seven spells of hackers that can help to gain full co
   
 [The figure shows four steps of the attack. Each step features a set of methods]  
   
-
-[![](https://malware.news/uploads/default/original/2X/9/910b9a47dd76afb5a371efc80000f2151fc2dd17.png)](https://4.bp.blogspot.com/-wyGTFZX6R8Q/W79M6b9s4iI/AAAAAAAAHWE/-SKihX7jN0AiK0bLy3GqqejudR7DDy1UQCLcBGAs/s1600/bqlwufggd4wwixlwo6dsb5w66by.png)
-
+![](resources/c890485f1a034a169703d439958bc9a1.png)
   
 Let's start with reconnaissance.  
   
@@ -60,9 +59,7 @@ Let's start with reconnaissance.
 
 PowerView is a part of [PowerSploit](https://github.com/PowerShellMafia/PowerSploit), a well-known PowerShell framework for penetration testing. PowerView supports [Bloodhound](https://github.com/BloodHoundAD/BloodHound), the tool that gives graph representation of object connections in AD.  
   
-
-[![](https://malware.news/uploads/default/original/2X/5/5a40035a38bcd2542d287820846cd835decb08d4.png)](https://1.bp.blogspot.com/-AA3JIhXys5o/W79ZeaFeCtI/AAAAAAAAHY0/l7aPk1XY6NQawueUfmR-kKshIbV-TR4hgCLcBGAs/s1600/mad1.png)
-
+![](resources/e7b0f1baed719220a8076ef1e625db4a.png)
   
 Graph representation of relationships between Active Directory objects  
 Bloodhound immediately provides such possibilities as:  
@@ -80,49 +77,39 @@ The difference between PowerView and built-in utilities that allow obtaining dat
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Diagnostic\\15 Field Engineering = 5  
   
 
-|   |
-|---|
-|[![](https://malware.news/uploads/default/original/2X/6/629db7124bc7bed5e806e9758da890f98015bad8.png)](https://3.bp.blogspot.com/-HO0C98Wf5sY/W79Z92LkNcI/AAAAAAAAHZM/ahdgkn8t6tsWFDpbrMrOTSZpP_s1TXoGgCLcBGAs/s1600/ad1.png)|
-|Enabling logging of LDAP event 1644|
+![](resources/235ba97d85adff7a50b373a19d8d7fea.png)
 
-|   |
-|---|
-|[![](https://malware.news/uploads/default/original/2X/7/7903db08700a9460bcfaa6656980b1da5a05200b.png)](https://1.bp.blogspot.com/-3enF-kQMhQM/W79aJZDJzMI/AAAAAAAAHZQ/TqCjRioXrzgvjPVvyKQWxV_xgYq57MMkACLcBGAs/s1600/ad2.png)|
-|Event 1644 with properties of an LDAP query|
+| Enabling logging of LDAP event 1644                                                                                                                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
+![](resources/74d16a83ba861361b6d84fb3f3980f5a.png)
+
+| Event 1644 with properties of an LDAP query                                                                                                                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
   
   
 Note that there can be multiple events of this kind, and a good alternative to analysis of events is analysis of traffic, because LDAP is a cleartext protocol and all queries are seen clearly in traffic.  
   
+![](resources/0960e5cfd16b70d453121875d7b5709c.png)
 
-|                                                                                                                                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [![](https://malware.news/uploads/default/original/2X/2/249b90f8b81bbd679d2d7787b88ac816eac69256.png)](https://1.bp.blogspot.com/-bdmUgfc-D30/W79aZBN2PeI/AAAAAAAAHZY/XLzJFEuCSGgMGW_QmlK8rDJA58GRNOf8QCLcBGAs/s1600/ad3.png) |
-| LDAP SearchRequest                                                                                                                                                                                                            |
 
 One more feature of the framework is that it uses only PowerShell and has no dependencies. Moreover, PowerShell v5 has a new option of advanced audit, which is very useful in detection. Event 4104 shows the script body, which can be searched for function names that are specific for PowerView.  
   
 
-|   |
-|---|
-|[![](https://malware.news/uploads/default/original/2X/6/63d9d96bf3a6f706c45a324faf7c4af818dc24b4.png)](https://1.bp.blogspot.com/-MAw0oipfGNg/W79apu0JzzI/AAAAAAAAHZk/xJJL3OwAShgQvqcJw31ojJ0t93KoQavogCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.13.42.png)|
-||
+![](resources/d4b51d836490367e54a7e8d5d3d3bd27.png)
 
 ### SPN Scan
 
 This utility can be a substitute for Nmap. As soon as a hacker knows what users and groups exist in AD, he or she needs information about services to get the whole picture.  
   
 
-[![](https://malware.news/uploads/default/original/2X/b/b53ac16dbc50dbc2f827a63991e8059d28499649.png)](https://4.bp.blogspot.com/-vGd943I2ERw/W79a4zH1VwI/AAAAAAAAHZo/D7Z-o8S4XqYxUztTuDRi21_RdRpmgN9owCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.14.43.png)
-
+![](resources/98a6dc8ecbc7cb7a164e5314c623a61d.png)
   
 Commonly, scanning ports with Nmap provides this information. But now these data can be retrieved from AD—they are already stored there. The query result looks as follows: the reply returns an SPN (Service Principal Name) that consists of a service class, which is unique for each service type, host name in FQDN format, and port for some services.  
   
 
-|   |
-|---|
-|[![](https://malware.news/uploads/default/original/2X/1/13a69b8b5bf2c6151900559fc236759832d17989.png)](https://2.bp.blogspot.com/-bAGI7NJsc6Y/W79OG9_4biI/AAAAAAAAHW8/0Waa451bNjkCFqlPK8-ATCwEhlqwf_aOwCLcBGAs/s1600/5bz8otu_w7hroldiqy0wscyut-g.png)|
-|Examples of SPN for different services|
+![](resources/7e79a2899e63ac293a715432bb45c6d3.png)
 
 For the full list of SPNs, see [https://adsecurity.org/?page_id=183](https://adsecurity.org/?page_id=183)  
   
@@ -139,17 +126,14 @@ Both cases trigger the following scenario: hunt –> compromise any host –> up
   
 To detect the use of this scenario, two events can be used: 4624—a successful logon to a remote system (logon type 3), and events of access to the network share IPC$, with one nuance, the named pipe "srvsvc". Why the pipe is named like this can be guessed from the traffic.  
   
-
-[![](https://malware.news/uploads/default/original/2X/4/441d464720ded37f8a1d751bce3eeb92ab7fa5b9.png)](https://2.bp.blogspot.com/-SaLEwklUSvc/W79bHgsXMYI/AAAAAAAAHZw/mybMQwXNs4ENM2HsuHLFo-1dHLPazprCwCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.15.41.png)
-
+![](resources/3ba4ef4537462ceb20956f6da1f2d5f7.png)
   
 Red boxes in the left part show SMB connections, and then connections to the pipe "srvsvc". This pipe allows interacting via the Server Service Remote Protocol. End hosts receive various administrative information from the pipe; for example, one of the requests is NetSessEnum. This request returns a full list of users logged in to the remote system with their IP addresses and names.  
   
-
-[![](https://malware.news/uploads/default/original/2X/7/7ff8e15905184cc81c57e1f177fe951aa8c3477c.png)](https://3.bp.blogspot.com/-AXOVYjz1EgA/W79bP6LgpWI/AAAAAAAAHZ4/t20Eg6OosPYD8GFg4P642nfKSuKG5uoKACLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.16.14.png)
+![](resources/d9bdf85c98f0fb3f3af2fefc552e8bb4.png)
 
   
-[MaxPatrol](https://www.ptsecurity.com/ww-en/products/maxpatrol/) SIEM allows detection based on correlation of these two events with srvsvc taken into account. PT Network Attack Discovery performs similar detection based on traffic analysis.  
+[MaxPatrol]SIEM allows detection based on correlation of these two events with srvsvc taken into account. PT Network Attack Discovery performs similar detection based on traffic analysis.  
   
 
 ### Overpass-the-Hash
@@ -158,32 +142,26 @@ Pass-the-Hash reincarnation. Let's continue with lateral movement. What an attac
   
 The Kerberos protocol was developed specifically to prevent sending user passwords over the network in any form. To avoid that, the user encrypts an authentication request using password hash on its own computer. A Key Distribution Center (a special service running on the domain controller) replies with a ticket to get other tickets, the so-called Ticket-Granting Ticket (TGT). Now the client is deemed authenticated and can request tickets to access other services within the next 10 hours. Therefore, if the attacker dumps hash of a user who is a member of a trusted group of the target service (for example, ERP system or database), the attacker can issue a ticket for itself and successfully log in to the target service.  
   
+![](resources/44569919d7fe92aad29350144bc19ea4.png)
 
-[![](https://malware.news/uploads/default/original/2X/c/c07b74e3e0dd7cbb6fe71aba3900d32c3fc6ec8a.png)](https://2.bp.blogspot.com/-IvRpCGrtBOA/W79b_2ZeWwI/AAAAAAAAHaM/B2q_E9k32WghmafF9fH111-lKjToxFPowCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.19.20.png)
-
-  
 
 #### How to detect
 
 If a hacker uses the PowerShell version of Mimikatz for an attack, logging the script body would help, because Invoke-Mimikatz is quite an indicative line.  
   
-
-[![](https://malware.news/uploads/default/original/2X/8/874282719d1896fdb083606cb3f4a54a1dc55497.png)](https://2.bp.blogspot.com/-O70D-5_-Q9s/W79bbXgG2zI/AAAAAAAAHZ8/njmteFTciAMK6YJiBK3FW0yz9UwGaoKZgCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.17.06.png)
-
+![](resources/c28a7cf858e994ef659fc671fe6ef036.png)
   
 Another symptom is event 4688—creating a process with extended audit of the command line. Even if a binary file is renamed, the command line would contain the command, which is very peculiar to Mimikatz.  
   
 
-[![](https://malware.news/uploads/default/original/2X/d/d1cd9d8fec5a28e90f7365881dd5b5f13bfe4980.png)](https://2.bp.blogspot.com/-H6d_DoLOhl4/W79bwVXbY7I/AAAAAAAAHaE/NrjA4gI7gf8jsnQW9i24Zy9IwIJ8DcY9QCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.18.26.png)
+![](resources/0e47841709493cbf1bb5446221c0a2bd.png)
 
   
   
 If you want to detect an Overpass-the-Hash attack by analyzing traffic, the following anomaly can be used: Microsoft recommends using AES256 encryption for authentication requests in modern domains, and if Mimikatz sends authentication request data, it encrypts the data with an outdated ARCFOUR.  
   
 
-[![](https://malware.news/uploads/default/original/2X/4/4ca036c60ad4ba750cca6c09acad581d03b0550e.png)](https://4.bp.blogspot.com/-yJy-wrSkkG4/W79b2TvIswI/AAAAAAAAHaI/YLnQMdVDM9MIcUOQv-sfhu67O8OFsLAbgCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.18.53.png)
-
-  
+  ![](resources/40719bba0adbce9c2c68dba0b1193ba8.png)
   
 Another specific feature is the cipher suite sent by Mimikatz, which is different from a legitimate domain's suite, and thus stands out in the traffic.  
   
@@ -194,18 +172,14 @@ A well-known method.
   
 What can an attacker get out of password hash of a special account called krbtgt? Previously, we reviewed a case where the user could be unprivileged. Now, we review a case where the user's password hash is used for signing absolutely all tickets for gaining other tickets (TGT). There is no need to address to a Key Distribution Center: an attacker can generate this ticket, because a Golden Ticket is in fact a TGT. Then the attacker can send authentication requests on any service in AD for an unlimited period. The result is unrestricted access to target resources—Golden Ticket has its name for a reason.  
   
-
-[![](https://malware.news/uploads/default/original/2X/8/8c88aeac5103d1701578babba3d7e4b1cb2bca39.png)](https://3.bp.blogspot.com/-lhBLuQT9gJQ/W79cIkvLvWI/AAAAAAAAHaU/1kPNrN_TNgUGmMS5mIE70jwJJUFxG58mACLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.20.08.png)
-
+![](resources/1a98c838ed0f1ca173a1a39ff3521224.png)
   
 
 #### How to detect based on events 
 
 Event 4768 informs that a TGT was granted, and event 4769 informs that a service ticket required for authentication on some service in AD was granted.  
   
-
-[![](https://malware.news/uploads/default/original/2X/8/8047b9237f985b0bd9c380aa001d7bf5931d4f5f.png)](https://1.bp.blogspot.com/-CyeOFNASFnc/W79cQkc7PII/AAAAAAAAHac/1w8M3Df7kLk_wKOrzTcpTsXsrOIQ_gcVQCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.20.34.png)
-
+![](resources/5c127b32c420c9fcb2bac7bcff581657.png)
   
 In this case, we can speculate in difference: while Golden Ticket does not request a TGT from the domain controller (because it generates the TGT itself), it has to request a TGS. Therefore, if we see that obtained TGT and TGS differ, we can assume that the Golden Ticket attack is underway.  
 MaxPatrol SIEM uses table lists to log all issued TGTs and TGSs to implement this method of detection.  
@@ -218,24 +192,20 @@ After being authenticated and authorized on target hosts, the hacker can start r
 The figure below demonstrates the use of wmic, a built-in utility. The utility is given a host address for connection, credentials, the process call create operator, and a command to be executed on the remote host.  
   
 
-[![](https://malware.news/uploads/default/original/2X/5/5b40a8d691619db6046333b5a967ecb5fa58f267.png)](https://1.bp.blogspot.com/-Gwc7NSoX-GU/W79cXikQvVI/AAAAAAAAHag/3NyJbvAhy0EWnCamcdRuPZsDjgjgX9MrgCLcBGAs/s1600/ad6.png)
+![](resources/bc8fee463d73ca4ce0f421a5ce1c0455.png)
 
 #### How to detect 
 
 Check the combination of remote logon events 4624. An important parameter is the Logon ID. Also check event 4688 that informs about creating a process with the command line. Event 4688 shows that the parent of the created process is WmiPrvSE.exe, a special wmi service process used for remote administration. We can see the command net user /add sent by us, and the Logon ID, which is the same as in event 4624. Thus, we can tell absolutely precisely from which host this command was initiated.  
   
-
-[![](https://malware.news/uploads/default/original/2X/c/c0c6b6d9a9b91093a40d9f4637dc8c62c6a3a268.png)](https://2.bp.blogspot.com/-YgYk9HgQrKc/W79cdrm0j_I/AAAAAAAAHao/C_kCwfKCvZ8rW8F2RQfTjwRQaQ1-0uFawCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.21.30.png)
-
+![](resources/52ddec4f013924d16b125848c9d9b73c.png)
 #### Detection based on traffic analysis
 
 We can clearly see words typical of Win32 process create, and the command line, which is going to be executed. The malware on the figure below was distributed on virtual networks in the same way as WannaCry, but instead of encryption, it set up a crypto miner. The malware used Mimikatz and EthernalBlue, dumped accounts, and used them to log in to hosts it could reach on the network. Using WMI, the malware ran PowerShell on these hosts and downloaded PowerShell payload, which also contained Mimikatz, EthernalBlue, and a miner. Thus, a chain reaction was created.  
 
   
 
-[![](https://malware.news/uploads/default/original/2X/d/d7546b1e049fb66a825794ef289c8f4d62932911.png)](https://1.bp.blogspot.com/-q49n-NGgv5M/W79co4j8lzI/AAAAAAAAHa4/E39AMnpcuZ8cM61qNNBt5TvKeFMA-Do4wCLcBGAs/s1600/ad7.png)
-
-  
+  ![](resources/13e72ff4af6020ad97047c7137530dd2.png)
   
 Recommendations  
   
@@ -256,9 +226,7 @@ On January 24, 2018, Benjamin Delpy and Vincent Le Toux released during the Micr
   
 The attack scheme:  
   
-
-[![](https://malware.news/uploads/default/original/2X/9/9171eb3a604b07cf15812c07b0411a0a3f4086f5.png)](https://2.bp.blogspot.com/-2ODGIeiVJ7M/W79dLGfB5kI/AAAAAAAAHbE/AU3H14nl58YwHK8LRKpBJgibOECBEBaNgCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.24.26.png)
-
+![](resources/cae61dd36ec04ab9fb742d821d973d06.png)
   
 Two SPNs should be added to the system the attack is run from. These SPNs are required for other domain controllers to authenticate using Kerberos for replication. Because the domain controller is represented as the object of class nTDSDSA in the AD base according to the specification, such an object should be created. Finally, replication is triggered by the DRSReplicaAdd function.  
   
@@ -267,9 +235,7 @@ Two SPNs should be added to the system the attack is run from. These SPNs are re
 
 This is what DCShadow looks like in traffic. By analyzing the traffic, we can clearly see that a new object is added to the domain controller configuration scheme, and then replication is triggered.  
   
-
-[![](https://malware.news/uploads/default/original/2X/3/323664976005a56285fef4905bec86d7232b8dff.png)](https://2.bp.blogspot.com/-7DvdAUggjLw/W79dXKJAF3I/AAAAAAAAHbI/MNqmFQNeCq4RiSOAce8pShvwZEeSBWvvgCLcBGAs/s1600/%25D0%25A1%25D0%25BD%25D0%25B8%25D0%25BC%25D0%25BE%25D0%25BA%2B%25D1%258D%25D0%25BA%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B0%2B2018-10-11%2B%25D0%25B2%2B17.25.18.png)
-
+![](resources/94b608c8dc62fa68b620dbe8f84e3877.png)
   
 Although the attack creators say that SIEM would not help in its detection, we found a way to inform the security department about suspicious activity on the network.  
   
