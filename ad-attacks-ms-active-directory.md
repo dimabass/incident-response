@@ -1,8 +1,3 @@
----
-layout: default
-title: Advanced Attacks on Microsoft Active Directory – Detection & Mitigation
----
-
 > After a recent interview where I was challenged with analyzing a real-world AD attack, I dove deeper into advanced techniques and created this write-up. Full article reposted below for educational purposes.
 ---
 
@@ -133,7 +128,7 @@ Red boxes in the left part show SMB connections, and then connections to the pip
 ![](resources/d9bdf85c98f0fb3f3af2fefc552e8bb4.png)
 
   
-[MaxPatrol]SIEM allows detection based on correlation of these two events with srvsvc taken into account. PT Network Attack Discovery performs similar detection based on traffic analysis.  
+MaxPatrol SIEM allows detection based on correlation of these two events with srvsvc taken into account. PT Network Attack Discovery performs similar detection based on traffic analysis.  
   
 
 ### Overpass-the-Hash
