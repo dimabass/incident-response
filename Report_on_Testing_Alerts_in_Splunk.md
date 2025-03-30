@@ -1,3 +1,11 @@
+---
+layout: default
+title: Testing Alerts in Splunk Using Windows Logs
+date: 2025-03-30
+description: A hands-on report demonstrating how to create and test alerts in Splunk for common Windows security events using SPL.
+tags: [splunk, spl, windows-logs, alerts, detection]
+---
+
 #### **TASK**
 **Write the required SPL (Search Processing Language) queries to create the following alerts using the incoming Windows logs:**
     
